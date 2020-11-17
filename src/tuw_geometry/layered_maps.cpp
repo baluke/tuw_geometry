@@ -35,7 +35,8 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/core/core_c.h>
 #include <opencv2/opencv.hpp>
-#include <opencv/cv.hpp>
+#include <opencv2/imgproc/types_c.h>
+#include <opencv2/core/types_c.h>
 
 using namespace tuw;
 using namespace std;
@@ -162,7 +163,7 @@ void LayeredMaps::computeDistanceField ( Mat& _mDst, Mat& _mSrc, const double& _
         for (int j = 0; j < nCols; ++j) { if (_flipDistance) { p_d[j] = (float_t)(       distance2probabilityTriangle ( p_d[j], threshold )   ); }
 	                                  else               { p_d[j] = (float_t)( (1. - distance2probabilityTriangle ( p_d[j], threshold ) ) ); } }
     }
-    if ( ( _mDst.channels() != 1 ) && ( _mDst.channels() != 5 ) )  { cvtColor(destMap_f, _mDst, CV_GRAY2BGR ); }
+    if ( ( _mDst.channels() != 1 ) && ( _mDst.channels() != 5 ) )  { cvtColor(destMap_f, _mDst, COLOR_GRAY2BGR ); }
     else                                                           { _mDst = destMap_f;                        }
     
 }
